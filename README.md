@@ -21,12 +21,16 @@
    ```bash
    ./script/find_daliy_git_commits.sh
    ```
+   ![image](https://github.com/user-attachments/assets/8ef33c23-4b4a-4592-85e8-3da0a314c548)
+
 
 3. 별도의 날짜를 입력하여 실행할 수 있습니다:
 
    ```bash
    ./script/find_daliy_git_commits.sh YYYY-MM-DD
    ```
+   ![image](https://github.com/user-attachments/assets/25cedcb9-ee31-40f5-bd2a-08b5aefdfe08)
+
 
 ## 스크립트 설명
 
