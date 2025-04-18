@@ -1,7 +1,8 @@
-# 해당 레포는 업무 자동화를 위한 스크립트를 모아둔 레포.
+# Handy Scrirpt
 
+해당 레포는 업무 자동화를 위한 스크립트를 모아둔 레포
 
-## find_daliy_git_commits.sh
+## summarize-daliy-commit.sh
 
 이 스크립트는 지정된 디렉터리 내의 Git 저장소를 검색하고, 오늘 날짜 기준으로 사용자가 작성한 커밋 내역을 요약하여 출력합니다. 또한, 결과를 클립보드에 복사합니다.
 
@@ -21,24 +22,24 @@
 1. 스크립트를 실행 가능한 상태로 만듭니다:
 
    ```bash
-   chmod +x script/find_daliy_git_commits.sh
+   chmod +x script/summarize daliy-commit.sh
    ```
 
 2. 스크립트를 실행합니다:
 
    ```bash
-   ./script/find_daliy_git_commits.sh
+   ./script/summarize daliy-commit.sh
    ```
-   ![image](https://github.com/user-attachments/assets/8ef33c23-4b4a-4592-85e8-3da0a314c548)
 
+   ![image](https://github.com/user-attachments/assets/8ef33c23-4b4a-4592-85e8-3da0a314c548)
 
 3. 별도의 날짜를 입력하여 실행할 수 있습니다:
 
    ```bash
-   ./script/find_daliy_git_commits.sh YYYY-MM-DD
+   ./script/summarize daliy-commit.sh YYYY-MM-DD
    ```
-   ![image](https://github.com/user-attachments/assets/25cedcb9-ee31-40f5-bd2a-08b5aefdfe08)
 
+   ![image](https://github.com/user-attachments/assets/25cedcb9-ee31-40f5-bd2a-08b5aefdfe08)
 
 ### 스크립트 설명
 
@@ -48,6 +49,53 @@
 - **요약**: 총 저장소 수와 총 커밋 수를 요약하여 출력합니다.
 - **클립보드 저장**: 결과를 클립보드에 복사하여 다른 곳에 쉽게 붙여넣을 수 있습니다.
 
+## summarize-weekly-commit.sh
+
+이 스크립트는 지정된 디렉터리 내의 Git 저장소를 검색하고, 특정 날짜가 속한 주의 사용자 커밋 내역을 요약하여 출력합니다. 일일 커밋 요약의 확장 버전으로, 한 주 동안의 작업 내역을 종합적으로 파악할 수 있습니다.
+
+### 왜 만들었는가?
+
+- 주간 업무 보고서나 회고를 작성할 때 한 주 동안의 작업 내역을 쉽게 정리하기 위해 만듬.
+- 일일 커밋을 모아서 주간 단위로 확인함으로써 프로젝트 진행 상황을 더 큰 맥락에서 파악할 수 있음.
+
+### 요구 사항
+
+- Bash 쉘
+- Git
+- `pbcopy` 명령어 (macOS에서 기본 제공)
+
+### 사용법
+
+1. 스크립트를 실행 가능한 상태로 만듭니다:
+
+   ```bash
+   chmod +x script/summarize weekly-commit.sh
+   ```
+
+2. 스크립트를 실행합니다 (현재 날짜가 속한 주의 커밋 내역 출력):
+
+   ```bash
+   ./script/summarize weekly-commit.sh
+   ```
+
+3. 특정 날짜를 지정하여 실행할 수 있습니다 (해당 날짜가 속한 주의 커밋 내역 출력):
+
+   ```bash
+   ./script/summarize weekly-commit.sh YYYY-MM-DD
+   ```
+
+   (예: 2023-08-15를 입력하면 2023-08-15가 속한 주의 커밋을 모두 가져옵니다)
+
+### 스크립트 설명
+
+- **검색 디렉터리**: 일일 커밋 스크립트와 동일한 디렉터리 구조를 사용합니다.
+- **주간 단위 계산**: 입력된 날짜 또는 현재 날짜가 속한 주의 시작일(월요일)과 종료일(일요일)을 계산합니다.
+- **저장소별 요약**: 각 저장소에서 해당 주 기간 동안의 커밋을 검색하고, 저장소별로 요약합니다.
+- **프로젝트별 그룹화**: 관련 저장소의 커밋을 프로젝트별로 그룹화하여 보여줍니다.
+- **통계 정보**: 주간 총 커밋 수, 작업일 수, 일평균 커밋 수 등 통계 정보를 제공합니다.
+- **클립보드 저장**: 결과를 클립보드에 복사하여 주간 보고서나 회고에 쉽게 활용할 수 있습니다.
+
 ### 참고
 
-- 스크립트는 macOS 환경에서 테스트되었습니다. 다른 운영체제에서는 `pbcopy` 명령어 대신 다른 방법으로 클립보드에 복사해야 할 수 있습니다.
+- 두 스크립트 모두 macOS 환경에서 테스트되었습니다. 다른 운영체제에서는 `pbcopy` 명령어 대신 다른 방법으로 클립보드에 복사해야 할 수 있습니다.
+- 파일명에 공백이 있으면 실행 시 따옴표로 감싸거나 이스케이프 문자를 사용해야 합니다.
